@@ -2,17 +2,20 @@
 GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
-### GET request to example server
+### 전부 조회하기
 GET http://localhost:8080/members
 
-###
+### 생성하기
 POST http://localhost:8080/members
 Content-Type: application/json
 
 {"name": "장이수"}
 
-###
-GET http://localhost:8080/members/7
+### id로 찾기
+GET http://localhost:8080/members/8
 
-###
+### id로 지우기
 DELETE http://localhost:8080/members/2
+
+### name으로 찾기
+GET http://localhost:8080/search/members?name=이수

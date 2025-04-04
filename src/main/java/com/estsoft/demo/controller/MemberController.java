@@ -1,6 +1,7 @@
 package com.estsoft.demo.controller;
 
 import com.estsoft.demo.repository.Member;
+import com.estsoft.demo.repository.MemberDTO;
 import com.estsoft.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +18,9 @@ public class MemberController {
 
     @ResponseBody
     @GetMapping("/members")
-    public List<Member> showMembers() {
-        return memberService.getMemberAll();
+    public List<MemberDTO> showMembers() {
+        List<Member> members = memberService.getMemberAll();
+        return members.stream().map(MemberDTO::new).toList();
     }
 
     @ResponseBody
@@ -42,5 +44,11 @@ public class MemberController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("삭제 실패");
         }
+    }
+
+    @ResponseBody
+    @GetMapping("/search/members")
+    public List<Member> selectMembersByName(@RequestParam String name) {
+        return memberService.selectMemberByName(name);
     }
 }
