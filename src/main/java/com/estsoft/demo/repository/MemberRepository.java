@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
     List<Member> findByNameContaining(String name);
+    List<Member> findByTeamId(Long teamId);
 }

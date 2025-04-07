@@ -19,3 +19,24 @@ DELETE http://localhost:8080/members/2
 
 ### name으로 찾기
 GET http://localhost:8080/search/members?name=이수
+
+### 팀 전부 조회하기
+GET http://localhost:8080/teams
+
+### 팀 생성하기
+POST http://localhost:8080/teams
+Content-Type: application/json
+
+{"name": "첼시"}
+
+### id로 수정하기
+PUT http://localhost:8080/teams/2
+Content-Type: application/json
+
+{"name": "유벤투스"}
+
+### 팀 관련된 이름 수정하기
+PUT http://localhost:8080/teams/2/members
+Content-Type: application/json
+
+{"name": "유벤투스명"}
