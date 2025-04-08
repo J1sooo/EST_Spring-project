@@ -12,3 +12,15 @@ GET http://localhost:8080/api/articles
 
 ### GET 블로그 단건 조회
 GET http://localhost:8080/api/articles/5
+
+### DELELTE 블로그 단건 삭제
+DELETE http://localhost:8080/api/articles/8
+
+### PUT 블로그 게시글 수정
+PUT http://localhost:8080/api/articles/22
+Content-Type: application/json
+
+{
+  "title": "제목4",
+  "content": "내용4"
+}

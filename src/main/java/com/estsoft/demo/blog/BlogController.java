@@ -3,6 +3,7 @@ package com.estsoft.demo.blog;
 import com.estsoft.demo.blog.domain.Article;
 import com.estsoft.demo.blog.dto.AddArticleRequest;
 import com.estsoft.demo.blog.dto.ArticleResponse;
+import com.estsoft.demo.blog.dto.UpdateArticleRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,5 +41,32 @@ public class BlogController {
         Article articles = blogService.findById(id);
         ArticleResponse articleResponse = new ArticleResponse(articles.getId(), articles.getTitle(), articles.getContent());
         return ResponseEntity.ok(articleResponse);
+    }
+
+    @DeleteMapping("/api/articles/{id}")
+    public ResponseEntity<Void> deleteArticles(@PathVariable Long id) {
+        blogService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/api/articles")
+    public ResponseEntity<Void> deleteAllArticles() {
+        blogService.deleteAll();
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/api/articles/{id}")
+    public ResponseEntity<ArticleResponse> updateArticle(@PathVariable Long id,
+                                                         @RequestBody UpdateArticleRequest request) {
+        Article article = blogService.updateArticle(id, request);
+        ArticleResponse articleResponse = article.toDto();
+        return ResponseEntity.ok(articleResponse);
+    }
+
+    // IllegalArgumentException 500x -> 4xx
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String HandlerIllegalArgumentException(IllegalArgumentException e) {
+        return e.getMessage();
     }
 }
