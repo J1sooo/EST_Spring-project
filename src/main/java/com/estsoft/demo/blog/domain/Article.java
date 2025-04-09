@@ -3,9 +3,15 @@ package com.estsoft.demo.blog.domain;
 import com.estsoft.demo.blog.dto.ArticleResponse;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Article {
     @Id
@@ -19,7 +25,20 @@ public class Article {
     @Column(nullable = false)
     private String content;
 
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
     @Builder
+    public Article(String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.title = title;
+        this.content = content;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public Article(String title, String content) {
         this.title = title;
         this.content = content;
