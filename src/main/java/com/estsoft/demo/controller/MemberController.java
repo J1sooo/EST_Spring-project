@@ -1,7 +1,7 @@
 package com.estsoft.demo.controller;
 
-import com.estsoft.demo.repository.Member;
-import com.estsoft.demo.repository.MemberDTO;
+import com.estsoft.demo.domain.Member;
+import com.estsoft.demo.dto.MemberDTO;
 import com.estsoft.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

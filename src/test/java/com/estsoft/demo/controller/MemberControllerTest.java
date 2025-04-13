@@ -1,6 +1,6 @@
 //package com.estsoft.demo.controller;
 //
-//import com.estsoft.demo.repository.Member;
+//import com.estsoft.demo.domain.Member;
 //import com.estsoft.demo.repository.MemberRepository;
 //import org.junit.jupiter.api.AfterEach;
 //import org.junit.jupiter.api.BeforeEach;

@@ -1,4 +1,4 @@
-package com.estsoft.demo.repository;
+package com.estsoft.demo.domain;
 
 
 import jakarta.persistence.*;

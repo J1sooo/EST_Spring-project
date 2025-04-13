@@ -1,8 +1,8 @@
 package com.estsoft.demo.service;
 
-import com.estsoft.demo.repository.Member;
+import com.estsoft.demo.domain.Member;
 import com.estsoft.demo.repository.MemberRepository;
-import com.estsoft.demo.repository.Team;
+import com.estsoft.demo.domain.Team;
 import com.estsoft.demo.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

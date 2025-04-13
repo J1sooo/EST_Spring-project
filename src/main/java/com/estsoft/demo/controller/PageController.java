@@ -1,6 +1,6 @@
 package com.estsoft.demo.controller;
 
-import com.estsoft.demo.repository.Person;
+import com.estsoft.demo.domain.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,8 +1,8 @@
 package com.estsoft.demo.controller;
 
-import com.estsoft.demo.repository.Member;
-import com.estsoft.demo.repository.Team;
-import com.estsoft.demo.repository.TeamDTO;
+import com.estsoft.demo.domain.Member;
+import com.estsoft.demo.domain.Team;
+import com.estsoft.demo.dto.TeamDTO;
 import com.estsoft.demo.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

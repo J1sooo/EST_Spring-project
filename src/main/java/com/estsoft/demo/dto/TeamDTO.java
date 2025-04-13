@@ -1,5 +1,6 @@
-package com.estsoft.demo.repository;
+package com.estsoft.demo.dto;
 
+import com.estsoft.demo.domain.Team;
 import lombok.Getter;
 
 @Getter
