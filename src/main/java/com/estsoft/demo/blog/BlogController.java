@@ -2,6 +2,7 @@ package com.estsoft.demo.blog;
 
 import com.estsoft.demo.blog.domain.Article;
 import com.estsoft.demo.blog.dto.AddArticleRequest;
+import com.estsoft.demo.blog.dto.ArticleCommentResponse;
 import com.estsoft.demo.blog.dto.ArticleResponse;
 import com.estsoft.demo.blog.dto.UpdateArticleRequest;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +31,7 @@ public class BlogController {
     public ResponseEntity<List<ArticleResponse>> getAllArticles() {
         List<Article> articles = blogService.findAll();
 
-        List<ArticleResponse> responses = articles.stream().map(article ->
-                new ArticleResponse(article.getId(), article.getTitle(), article.getContent())).toList();
+        List<ArticleResponse> responses = articles.stream().map(ArticleResponse::new).toList();
 
         return ResponseEntity.ok(responses);
     }
@@ -39,7 +39,7 @@ public class BlogController {
     @GetMapping("/api/articles/{id}")
     public ResponseEntity<ArticleResponse> getArticle(@PathVariable Long id) {
         Article articles = blogService.findById(id);
-        ArticleResponse articleResponse = new ArticleResponse(articles.getId(), articles.getTitle(), articles.getContent());
+        ArticleResponse articleResponse = new ArticleResponse(articles);
         return ResponseEntity.ok(articleResponse);
     }
 
@@ -68,5 +68,12 @@ public class BlogController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String HandlerIllegalArgumentException(IllegalArgumentException e) {
         return e.getMessage();
+    }
+
+    @GetMapping("/api/articles/{articleId}/comments")
+    public ResponseEntity<ArticleCommentResponse> findArticleWithComment(@PathVariable Long articleId) {
+        Article article = blogService.findById(articleId);
+
+        return ResponseEntity.ok(new ArticleCommentResponse(article));
     }
 }

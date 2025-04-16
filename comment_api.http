@@ -1,0 +1,31 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+### 로그인
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+username=1234@1234&password=1234
+
+### 댓글 생성
+POST http://localhost:8080/api/articles/1/comments
+Content-Type: application/json
+
+{
+  "body": "1게시물에 댓글2"
+}
+
+### 댓글 아이디로 조회
+GET http://localhost:8080/api/comments/1
+
+### 댓글 수정
+PUT http://localhost:8080/api/comments/1
+Content-Type: application/json
+
+{
+  "body": "게시물게시물게시물에 댓글댓글댓글"
+}
+
+### 게시물 기준으로 보기 /api/articles/{articleId}/comments
+GET http://localhost:8080/api/articles/1/comments

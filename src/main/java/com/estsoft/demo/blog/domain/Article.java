@@ -1,6 +1,7 @@
 package com.estsoft.demo.blog.domain;
 
 import com.estsoft.demo.blog.dto.ArticleResponse;
+import com.estsoft.demo.comment.Comment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -8,6 +9,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
@@ -31,12 +34,16 @@ public class Article {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @OneToMany(mappedBy = "article")
+    private List<Comment> comments = new ArrayList<>();
+
     @Builder
-    public Article(String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Article(String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt, List<Comment> comments) {
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.comments = comments;
     }
 
     public Article(String title, String content) {
@@ -50,7 +57,7 @@ public class Article {
     }
 
     public ArticleResponse toDto() {
-        return new ArticleResponse(id,title,content);
+        return new ArticleResponse(this);
     }
 
 //    public Article(Builder builder) {
