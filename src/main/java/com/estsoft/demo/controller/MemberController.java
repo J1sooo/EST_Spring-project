@@ -2,6 +2,7 @@ package com.estsoft.demo.controller;
 
 import com.estsoft.demo.domain.Member;
 import com.estsoft.demo.dto.MemberDTO;
+import com.estsoft.demo.dto.MemberRequest;
 import com.estsoft.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,14 +26,16 @@ public class MemberController {
 
     @ResponseBody
     @PostMapping("/members")
-    public Member saveMember(@RequestBody Member member) {
-        return memberService.saveMember(member);
+    public MemberDTO saveMember(@RequestBody MemberRequest request) {
+        Member member = memberService.saveMember(request.toEntity());
+        return new MemberDTO(member);
     }
 
     @ResponseBody
     @GetMapping("/members/{id}")
-    public Member findMember(@PathVariable Long id) {
-        return memberService.findMember(id);
+    public MemberDTO findMember(@PathVariable Long id) {
+        Member member = memberService.findMember(id);
+        return new MemberDTO(member);
     }
 
     @ResponseBody
@@ -48,7 +51,8 @@ public class MemberController {
 
     @ResponseBody
     @GetMapping("/search/members")
-    public List<Member> selectMembersByName(@RequestParam String name) {
-        return memberService.selectMemberByName(name);
+    public List<MemberDTO> selectMembersByName(@RequestParam String name) {
+        List<Member> member = memberService.selectMemberByName(name);
+        return member.stream().map(MemberDTO::new).toList();
     }
 }

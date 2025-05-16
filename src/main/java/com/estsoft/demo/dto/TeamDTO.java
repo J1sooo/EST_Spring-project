@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 public class TeamDTO {
-    private Long id;
+    private Long teamId;
     private String name;
 
     public TeamDTO(Team team) {
-        this.id = team.getId();
+        this.teamId = team.getId();
         this.name = team.getName();
     }
 }

@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
-
 @Getter @Setter
 @Entity
 @AllArgsConstructor @NoArgsConstructor
@@ -21,10 +19,15 @@ public class Member {
     @Column
     private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp createAt;
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Timestamp createAt;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
+
+    public Member(String name, Team team) {
+        this.name = name;
+        this.team = team;
+    }
 }
